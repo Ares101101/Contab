@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.File;
 import javax.swing.*;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
 
@@ -56,7 +58,8 @@ public class HelloController {
     }
     @FXML
     protected void generarVentas(){
-
+        System.out.println(buscador.getText());
+        Workbook libro = new XSSFWorkbook();
     }
 
 }
