@@ -91,7 +91,29 @@ public class HelloController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        try {
+            InputStream fichero = new FileInputStream(String.valueOf(buscador.getText()));
+            BufferedInputStream ficheroBuffered = new BufferedInputStream(fichero);
+            try {
+                int dato = ficheroBuffered.read();
+                System.out.print((char) dato);
+                String cache = "";
+                String Datos[][];
+               while (dato != -1){
+                   if ( (char) dato != '|' )  {
+
+                   }else {
+
+                   }
+
+
+               }
+            }catch (IOException e){
+                System.out.println("no puede leer el fichero"+ e.getMessage());
+            }
+        }catch (FileNotFoundException e){
+            System.out.println( e.getMessage());
+        }
 
     }
-
 }
