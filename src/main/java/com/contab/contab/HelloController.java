@@ -6,19 +6,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import java.io.File;
+
+import java.awt.*;
+import java.io.*;
 import javax.swing.*;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.IOException;
-
 public class HelloController {
 
+    @FXML
+    private MenuItem ventasForm;
     @FXML
     private Label buscador;
     @FXML
@@ -59,7 +66,32 @@ public class HelloController {
     @FXML
     protected void generarVentas(){
         System.out.println(buscador.getText());
+        //CREA ARCHIVO LIBRO
         Workbook libro = new XSSFWorkbook();
+        //CREA HOJA
+        Sheet hoja = libro.createSheet(String.valueOf(ventasForm));
+        //CREA FILAS
+        Row fila = hoja.createRow(0);
+        try{
+            OutputStream output = new FileOutputStream("ArchivoExcel.xlsx");
+            libro.write(output);
+        }catch (Exception e){
+            e.printStackTrace();
+        };
+        String filePath = "ArchivoExcel.xlsx"; // Reemplaza con la ruta correcta
+
+        try {
+            File file = new File(filePath);
+
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
+            } else {
+                System.out.println("El archivo no existe: " + filePath);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
