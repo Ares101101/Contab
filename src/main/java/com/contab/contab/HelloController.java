@@ -101,6 +101,7 @@ public class HelloController {
                 String Datos[][];
                while (dato != -1){
                    if ( (char) dato != '|' )  {
+                       cache += (char)dato;
 
                    }else {
 
