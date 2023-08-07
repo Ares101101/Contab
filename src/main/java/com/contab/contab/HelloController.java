@@ -15,6 +15,8 @@ import javafx.stage.StageStyle;
 
 import java.awt.*;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import javax.swing.*;
 
 import org.apache.poi.ss.usermodel.Row;
@@ -35,6 +37,9 @@ public class HelloController {
     Stage stage;
     private double xOffset = 0;
     private double yOffset = 0;
+    public static boolean contieneSaltoDeLinea(String texto) {
+        return texto.contains("\n");
+    }
 
     @FXML
     protected void ventasFor() throws IOException {
@@ -96,19 +101,37 @@ public class HelloController {
             BufferedInputStream ficheroBuffered = new BufferedInputStream(fichero);
             try {
                 int dato = ficheroBuffered.read();
-                System.out.print((char) dato);
+                int i = 0;
                 String cache = "";
-                String Datos[][];
-               while (dato != -1){
-                   if ( (char) dato != '|' )  {
-                       cache += (char)dato;
+                ArrayList<ArrayList<String>> DatosBidimensional = new ArrayList<>();
+                DatosBidimensional.add(new ArrayList<>());
 
-                   }else {
+                while (dato != -1){
+                   if ( (char) dato != '|' )  {
+                       cache += String.valueOf((char) dato);
+                       dato = ficheroBuffered.read();
+
+                   } else {
+                       if (contieneSaltoDeLinea(cache)){
+                           String[] lineas = cache.split("\n");
+                           DatosBidimensional.add(new ArrayList<>());
+                           DatosBidimensional.get(i).add(lineas[0]);
+                           i++;
+                           DatosBidimensional.get(i).add(lineas[1]);
+                           cache = "";
+                           dato = ficheroBuffered.read();
+                       }else {
+                           DatosBidimensional.get(i).add(cache);
+                           cache = "";
+                           dato = ficheroBuffered.read();
+                       }
 
                    }
-
-
-               }
+                }
+                DatosBidimensional.get(DatosBidimensional.size()-1).add(cache);
+                for (int e = 0; e < DatosBidimensional.size(); e++) {
+                    System.out.println(DatosBidimensional.get(e));
+                }
             }catch (IOException e){
                 System.out.println("no puede leer el fichero"+ e.getMessage());
             }
