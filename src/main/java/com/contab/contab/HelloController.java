@@ -4,6 +4,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.swing.*;
 
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -27,7 +29,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class HelloController {
 
     @FXML
-    private MenuItem ventasForm;
+    private static MenuItem ventasForm;
     @FXML
     private Label buscador;
     @FXML
@@ -39,6 +41,46 @@ public class HelloController {
     private double yOffset = 0;
     public static boolean contieneSaltoDeLinea(String texto) {
         return texto.contains("\n");
+    }
+    public static void fechaV(ArrayList<ArrayList<String>> arrayLists, Sheet hoja){
+
+        for (int i = 1; i < arrayLists.size(); i++) {
+
+            for (int j = 0; j <arrayLists.get(i).size() ; j++) {
+
+            }
+        }
+    }
+    public static void excelGenet(ArrayList<ArrayList<String>> arrayLists) {
+        //CREA ARCHIVO LIBRO
+        Workbook libro = new XSSFWorkbook();
+        //CREA HOJA
+        Sheet hoja = libro.createSheet(String.valueOf(ventasForm));
+
+        fechaV(arrayLists,hoja);
+
+        try{
+            OutputStream output = new FileOutputStream("ArchivoExcel.xlsx");
+            libro.write(output);
+        }catch (Exception e){
+            e.printStackTrace();
+        };
+
+
+
+        String filePath = "ArchivoExcel.xlsx"; // Reemplaza con la ruta correcta
+        try {
+            File file = new File(filePath);
+
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
+            } else {
+                System.out.println("El archivo no existe: " + filePath);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @FXML
@@ -71,31 +113,8 @@ public class HelloController {
     @FXML
     protected void generarVentas(){
         System.out.println(buscador.getText());
-        //CREA ARCHIVO LIBRO
-        Workbook libro = new XSSFWorkbook();
-        //CREA HOJA
-        Sheet hoja = libro.createSheet(String.valueOf(ventasForm));
-        //CREA FILAS
-        Row fila = hoja.createRow(0);
-        try{
-            OutputStream output = new FileOutputStream("ArchivoExcel.xlsx");
-            libro.write(output);
-        }catch (Exception e){
-            e.printStackTrace();
-        };
-        String filePath = "ArchivoExcel.xlsx"; // Reemplaza con la ruta correcta
 
-        try {
-            File file = new File(filePath);
 
-            if (file.exists()) {
-                Desktop.getDesktop().open(file);
-            } else {
-                System.out.println("El archivo no existe: " + filePath);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         try {
             InputStream fichero = new FileInputStream(String.valueOf(buscador.getText()));
             BufferedInputStream ficheroBuffered = new BufferedInputStream(fichero);
@@ -132,12 +151,13 @@ public class HelloController {
                 for (int e = 0; e < DatosBidimensional.size(); e++) {
                     System.out.println(DatosBidimensional.get(e));
                 }
+                excelGenet(DatosBidimensional);
+
             }catch (IOException e){
                 System.out.println("no puede leer el fichero"+ e.getMessage());
             }
         }catch (FileNotFoundException e){
             System.out.println( e.getMessage());
         }
-
     }
 }
