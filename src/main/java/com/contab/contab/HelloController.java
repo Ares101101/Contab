@@ -45,8 +45,20 @@ public class HelloController {
     public static void fechaV(ArrayList<ArrayList<String>> arrayLists, Sheet hoja){
 
         for (int i = 1; i < arrayLists.size(); i++) {
+            Row fila = hoja.createRow(i+3);
 
             for (int j = 0; j <arrayLists.get(i).size() ; j++) {
+                Cell celda = fila.createCell(j);
+                int numcel = j-4;
+                if(celda.getColumnIndex() == 1){
+                        celda.setCellValue("05");
+                }if(celda.getColumnIndex() == 2){
+                    celda.setCellValue(arrayLists.get(i).get(0).substring(5,7));
+                }
+                else if ( celda.getColumnIndex() > 3 && numcel<=arrayLists.get(i).size()) {
+                    celda.setCellValue(arrayLists.get(i).get(numcel));
+                }
+
 
             }
         }
