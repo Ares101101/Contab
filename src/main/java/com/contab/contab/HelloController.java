@@ -42,6 +42,11 @@ public class HelloController {
     public static boolean contieneSaltoDeLinea(String texto) {
         return texto.contains("\n");
     }
+    public static String comprobante ( Cell celda ){
+        String ceros = "0000";
+        String total = ceros + celda.getColumnIndex();
+        return total.substring( total.length()-5, total.length());
+    };
     public static void fechaV(ArrayList<ArrayList<String>> arrayLists, Sheet hoja){
 
         for (int i = 1; i < arrayLists.size(); i++) {
@@ -53,7 +58,7 @@ public class HelloController {
                 if(celda.getColumnIndex() == 1){
                         celda.setCellValue("05");
                 }if(celda.getColumnIndex() == 2){
-                    celda.setCellValue(arrayLists.get(i).get(0).substring(5,7));
+                    celda.setCellValue(arrayLists.get(i).get(0).substring(5,7) + comprobante(celda));
                 }
                 else if ( celda.getColumnIndex() > 3 && numcel<=arrayLists.get(i).size()) {
                     celda.setCellValue(arrayLists.get(i).get(numcel));
