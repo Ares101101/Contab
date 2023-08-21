@@ -39,12 +39,13 @@ public class HelloController {
     Stage stage;
     private double xOffset = 0;
     private double yOffset = 0;
+
     public static boolean contieneSaltoDeLinea(String texto) {
         return texto.contains("\n");
     }
-    public static String comprobante ( Cell celda ){
+    public static String comprobante ( Row fila){
         String ceros = "0000";
-        String total = ceros + celda.getColumnIndex();
+        String total = ceros + String.valueOf( fila.getRowNum()-3);
         return total.substring( total.length()-5, total.length());
     };
     public static void fechaV(ArrayList<ArrayList<String>> arrayLists, Sheet hoja){
@@ -56,15 +57,87 @@ public class HelloController {
                 Cell celda = fila.createCell(j);
                 int numcel = j-4;
                 if(celda.getColumnIndex() == 1){
-                        celda.setCellValue("05");
+                    celda.setCellValue("05");
                 }if(celda.getColumnIndex() == 2){
-                    celda.setCellValue(arrayLists.get(i).get(0).substring(5,7) + comprobante(celda));
+                    celda.setCellValue(arrayLists.get(i).get(0).substring(5,7) + comprobante(fila));
+                }if(celda.getColumnIndex() == 3){
+                    String cache = arrayLists.get(i).get(22).substring(0,3);
+                    if(cache.equals("PEN")){
+                        celda.setCellValue("MN");
+                    }else {
+                        celda.setCellValue("US");
+                    }
+                }if(celda.getColumnIndex() == 6){
+                    String cache = arrayLists.get(i).get(2).substring(0,2);
+                    if(cache.equals("01")){
+                        celda.setCellValue("FT");
+                    }if (cache.equals("03")){
+                        celda.setCellValue("BV");
+                    }if(cache.equals("07")){
+                        celda.setCellValue("NC");
+                    }else if(cache.equals("08")){
+                        celda.setCellValue("ND");
+                    }
+                }if(celda.getColumnIndex() == 7){
+                    celda.setCellValue(arrayLists.get(i).get(3));
+                }if(celda.getColumnIndex() == 8){
+                    celda.setCellValue(arrayLists.get(i).get(4));
+                }if(celda.getColumnIndex() == 9){
+                    celda.setCellValue(arrayLists.get(i).get(6));
+                }if(celda.getColumnIndex() == 10){
+                    celda.setCellValue(arrayLists.get(i).get(7));
+                }if(celda.getColumnIndex() == 11){
+                    celda.setCellValue(arrayLists.get(i).get(8)+" "+arrayLists.get(i).get(3)+" "+arrayLists.get(i).get(4));
+                }if(celda.getColumnIndex() == 12){
+                    celda.setCellValue(arrayLists.get(i).get(9));
+                }if(celda.getColumnIndex() == 13){
+                    celda.setCellValue(arrayLists.get(i).get(10));
+                }if(celda.getColumnIndex() == 14){
+                    celda.setCellValue(arrayLists.get(i).get(14));
+                }if(celda.getColumnIndex() == 15){
+                    celda.setCellValue(arrayLists.get(i).get(15));
+                }if(celda.getColumnIndex() == 16){
+                    celda.setCellValue(arrayLists.get(i).get(16));
+                }if(celda.getColumnIndex() == 17){
+                    celda.setCellValue(arrayLists.get(i).get(12));
+                }if(celda.getColumnIndex() == 18){
+                    celda.setCellValue(arrayLists.get(i).get(19));
+                }if(celda.getColumnIndex() == 19){
+                    celda.setCellValue(arrayLists.get(i).get(20));
+                }if(celda.getColumnIndex() == 20){
+                    celda.setCellValue(arrayLists.get(i).get(21));
+                }if(celda.getColumnIndex() == 21){
+                    celda.setCellValue("M");
+                }if(celda.getColumnIndex() == 23){
+                    celda.setCellValue(arrayLists.get(i).get(24));
+                }if(celda.getColumnIndex() == 24){
+                    if (arrayLists.get(i).get(25).length()>0){
+                        String cache = arrayLists.get(i).get(25).substring(0,2);
+                        if(cache.equals("01")){
+                            celda.setCellValue("FT");
+                        }if (cache.equals("03")){
+                            celda.setCellValue("BV");
+                        }if(cache.equals("07")){
+                            celda.setCellValue("NC");
+                        }else if(cache.equals("08")){
+                            celda.setCellValue("ND");
+                        }}else{
+                        celda.setCellValue("");
+                    }
+
+                }if(celda.getColumnIndex() == 25){
+                    celda.setCellValue(arrayLists.get(i).get(26));
+                }if(celda.getColumnIndex() == 26){
+                    celda.setCellValue(arrayLists.get(i).get(27));
+                }if(celda.getColumnIndex() == 27){
+                    celda.setCellValue(121201);
+                }if(celda.getColumnIndex() == 28){
+                    celda.setCellValue(701111);
                 }
-                else if ( celda.getColumnIndex() > 3 && numcel<=arrayLists.get(i).size()) {
+
+                /*else if ( celda.getColumnIndex() > 3 && numcel<=arrayLists.get(i).size()) {
                     celda.setCellValue(arrayLists.get(i).get(numcel));
-                }
-
-
+                }*/
             }
         }
     }
@@ -143,26 +216,26 @@ public class HelloController {
                 DatosBidimensional.add(new ArrayList<>());
 
                 while (dato != -1){
-                   if ( (char) dato != '|' )  {
-                       cache += String.valueOf((char) dato);
-                       dato = ficheroBuffered.read();
+                    if ( (char) dato != '|' )  {
+                        cache += String.valueOf((char) dato);
+                        dato = ficheroBuffered.read();
 
-                   } else {
-                       if (contieneSaltoDeLinea(cache)){
-                           String[] lineas = cache.split("\n");
-                           DatosBidimensional.add(new ArrayList<>());
-                           DatosBidimensional.get(i).add(lineas[0]);
-                           i++;
-                           DatosBidimensional.get(i).add(lineas[1]);
-                           cache = "";
-                           dato = ficheroBuffered.read();
-                       }else {
-                           DatosBidimensional.get(i).add(cache);
-                           cache = "";
-                           dato = ficheroBuffered.read();
-                       }
+                    } else {
+                        if (contieneSaltoDeLinea(cache)){
+                            String[] lineas = cache.split("\n");
+                            DatosBidimensional.add(new ArrayList<>());
+                            DatosBidimensional.get(i).add(lineas[0]);
+                            i++;
+                            DatosBidimensional.get(i).add(lineas[1]);
+                            cache = "";
+                            dato = ficheroBuffered.read();
+                        }else {
+                            DatosBidimensional.get(i).add(cache);
+                            cache = "";
+                            dato = ficheroBuffered.read();
+                        }
 
-                   }
+                    }
                 }
                 DatosBidimensional.get(DatosBidimensional.size()-1).add(cache);
                 for (int e = 0; e < DatosBidimensional.size(); e++) {
