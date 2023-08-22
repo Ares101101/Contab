@@ -67,6 +67,8 @@ public class HelloController {
                     }else {
                         celda.setCellValue("US");
                     }
+                }if(celda.getColumnIndex() == 4){
+                    celda.setCellValue(arrayLists.get(i).get(0));
                 }if(celda.getColumnIndex() == 6){
                     String cache = arrayLists.get(i).get(2).substring(0,2);
                     if(cache.equals("01")){
@@ -89,21 +91,51 @@ public class HelloController {
                 }if(celda.getColumnIndex() == 11){
                     celda.setCellValue(arrayLists.get(i).get(8)+" "+arrayLists.get(i).get(3)+" "+arrayLists.get(i).get(4));
                 }if(celda.getColumnIndex() == 12){
-                    celda.setCellValue(arrayLists.get(i).get(9));
+                    String cache = arrayLists.get(i).get(10);
+                    if(cache.equals("0")){
+                        celda.setCellValue(arrayLists.get(i).get(9));
+                    }else{
+                        celda.setCellValue("");
+                    }
                 }if(celda.getColumnIndex() == 13){
                     celda.setCellValue(arrayLists.get(i).get(10));
                 }if(celda.getColumnIndex() == 14){
-                    celda.setCellValue(arrayLists.get(i).get(14));
+                    String cache = arrayLists.get(i).get(14);
+                    if(cache.equals("0")){
+                        celda.setCellValue("");
+                    }else{
+                        celda.setCellValue(arrayLists.get(i).get(14));
+                    }
                 }if(celda.getColumnIndex() == 15){
-                    celda.setCellValue(arrayLists.get(i).get(15));
+                    String cache = arrayLists.get(i).get(15);
+                    if(cache.equals("0")){
+                        celda.setCellValue("");
+                    }else{
+                        celda.setCellValue(arrayLists.get(i).get(15));
+                    }
                 }if(celda.getColumnIndex() == 16){
-                    celda.setCellValue(arrayLists.get(i).get(16));
+                    String cache = arrayLists.get(i).get(16);
+                    if(cache.equals("0")){
+                        celda.setCellValue("");
+                    }else{
+                        celda.setCellValue(arrayLists.get(i).get(16));
+                    }
                 }if(celda.getColumnIndex() == 17){
                     celda.setCellValue(arrayLists.get(i).get(12));
                 }if(celda.getColumnIndex() == 18){
-                    celda.setCellValue(arrayLists.get(i).get(19));
+                    String cache = arrayLists.get(i).get(19);
+                    if(cache.equals("0")){
+                        celda.setCellValue("");
+                    }else{
+                        celda.setCellValue(arrayLists.get(i).get(19));
+                    }
                 }if(celda.getColumnIndex() == 19){
-                    celda.setCellValue(arrayLists.get(i).get(20));
+                    String cache = arrayLists.get(i).get(20);
+                    if(cache.equals("0")){
+                        celda.setCellValue("");
+                    }else{
+                        celda.setCellValue(arrayLists.get(i).get(20));
+                    }
                 }if(celda.getColumnIndex() == 20){
                     celda.setCellValue(arrayLists.get(i).get(21));
                 }if(celda.getColumnIndex() == 21){
@@ -183,7 +215,6 @@ public class HelloController {
         subWindowStage.setScene(subWindowScene);
         subWindowStage.show();
 
-
     }
     @FXML
     protected void closeButtom (){
@@ -219,7 +250,6 @@ public class HelloController {
                     if ( (char) dato != '|' )  {
                         cache += String.valueOf((char) dato);
                         dato = ficheroBuffered.read();
-
                     } else {
                         if (contieneSaltoDeLinea(cache)){
                             String[] lineas = cache.split("\n");
@@ -234,7 +264,6 @@ public class HelloController {
                             cache = "";
                             dato = ficheroBuffered.read();
                         }
-
                     }
                 }
                 DatosBidimensional.get(DatosBidimensional.size()-1).add(cache);
