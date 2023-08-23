@@ -17,7 +17,9 @@ import javafx.stage.StageStyle;
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 import javax.swing.*;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -43,15 +45,57 @@ public class HelloController {
     public static boolean contieneSaltoDeLinea(String texto) {
         return texto.contains("\n");
     }
+    public static String ordenarFecha(String fecha){
+        String fechaOrdenado = fecha.substring(8,10) +"/"+ fecha.substring(5,7)+"/"+ fecha.substring(0,4);
+        return fechaOrdenado;
+    }
     public static String comprobante ( Row fila){
         String ceros = "0000";
         String total = ceros + String.valueOf( fila.getRowNum()-3);
-        return total.substring( total.length()-5, total.length());
-    };
+        return total.substring( total.length()-4, total.length());
+    }
     public static void fechaV(ArrayList<ArrayList<String>> arrayLists, Sheet hoja){
 
         for (int i = 1; i < arrayLists.size(); i++) {
-            Row fila = hoja.createRow(i+3);
+            Row formato = hoja.createRow(2);
+            List<String> formats = new ArrayList<>();
+            formats.add("Tamaño/Formato");
+            formats.add("2 Caracteres");
+            formats.add("6 Caracteres");
+            formats.add("2 Caracteres");
+            formats.add("dd/mm/aaaa");
+            formats.add("dd/mm/aaaa");
+            formats.add("2 Caracteres");
+            formats.add("20 Caracteres");
+            formats.add("20 Caracteres");
+            formats.add("1 Caracter");
+            formats.add("20 Caracteres");
+            formats.add("40 Caracteres");
+            formats.add("2 decimales");
+            formats.add("2 decimales");
+            formats.add("2 decimales");
+            formats.add("2 decimales");
+            formats.add("2 decimales");
+            formats.add("2 decimales");
+            formats.add("2 decimales");
+            formats.add("2 decimales");
+            formats.add("2 decimales");
+            formats.add("1 Caracter");
+            formats.add("3 decimales");
+            formats.add("dd/mm/aaaa");
+            formats.add("2 caracteres");
+            formats.add("10 caracteres");
+            formats.add("20 caracteres");
+            formats.add("12 caracteres");
+            formats.add("12 caracteres");
+            formats.add("3 caracteres");
+            formats.add("6 caracteres");
+            formats.add("6 caracteres");
+            for (int j = 0; j <32; j++) {
+                Cell cell = formato.createCell(j);
+
+            }
+            Row fila = hoja.createRow(i+2);
 
             for (int j = 0; j <arrayLists.get(i).size() ; j++) {
                 Cell celda = fila.createCell(j);
@@ -68,7 +112,8 @@ public class HelloController {
                         celda.setCellValue("US");
                     }
                 }if(celda.getColumnIndex() == 4){
-                    celda.setCellValue(arrayLists.get(i).get(0));
+                    String fecha = arrayLists.get(i).get(0);
+                    celda.setCellValue(ordenarFecha(fecha));
                 }if(celda.getColumnIndex() == 6){
                     String cache = arrayLists.get(i).get(2).substring(0,2);
                     if(cache.equals("01")){
@@ -177,7 +222,7 @@ public class HelloController {
         //CREA ARCHIVO LIBRO
         Workbook libro = new XSSFWorkbook();
         //CREA HOJA
-        Sheet hoja = libro.createSheet(String.valueOf(ventasForm));
+        Sheet hoja = libro.createSheet("ventas");
 
         fechaV(arrayLists,hoja);
 
@@ -193,7 +238,6 @@ public class HelloController {
         String filePath = "ArchivoExcel.xlsx"; // Reemplaza con la ruta correcta
         try {
             File file = new File(filePath);
-
             if (file.exists()) {
                 Desktop.getDesktop().open(file);
             } else {
