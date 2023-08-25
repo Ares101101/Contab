@@ -57,7 +57,83 @@ public class HelloController {
     public static void fechaV(ArrayList<ArrayList<String>> arrayLists, Sheet hoja){
 
         for (int i = 1; i < arrayLists.size(); i++) {
-            Row formato = hoja.createRow(2);
+            Row formato1 = hoja.createRow(0);
+            Row formato2 = hoja.createRow(1);
+            Row formato3 = hoja.createRow(2);
+            List<String> formats1 = new ArrayList<>();
+            formats1.add("VENTAS");
+            formats1.add("SubDiario");
+            formats1.add("Comprobante");
+            formats1.add("Moneda");
+            formats1.add("Fecha de emisión de comprobante de pago");
+            formats1.add("Fecha de vencimiento o fecha de pago");
+            formats1.add("Tipo de documento");
+            formats1.add("Serie o Nro Maq Regist de documento");
+            formats1.add("Número de documento");
+            formats1.add("Tipo de documento de identidad");
+            formats1.add("Número de documento de identidad");
+            formats1.add("Apellidos y Nombres, denominación o razón social del proveedor");
+            formats1.add("Valor facturado de la exportación");
+            formats1.add("Base imponible de la operación gravada");
+            formats1.add("Importe total de la operación Exonerada");
+            formats1.add("Importe total de la operación Inafecta");
+            formats1.add("ISC");
+            formats1.add("IGV Y/O IPM");
+            formats1.add("ICBPER");
+            formats1.add("Otros tributos");
+            formats1.add("Importe total");
+            formats1.add("Tipo de Conversión");
+            formats1.add("Tipo de cambio");
+            formats1.add("Referencia del comprobante de pago que se modifica Fecha");
+            formats1.add("Referencia del comprobante de pago que se modifica Tipo");
+            formats1.add("Referencia del comprobante de pago que se modifica Serie");
+            formats1.add("Referencia del comprobante de pago que se modifica Numero");
+            formats1.add("Cuenta contable por cobrar");
+            formats1.add("Cuenta contable de ingresos");
+            formats1.add("Area");
+            formats1.add("Centro de Costo");
+            formats1.add("Anexo de Referencia");
+            for (int j = 0; j <32; j++) {
+                Cell cell = formato1.createCell(j);
+                cell.setCellValue(formats1.get(j));
+            }
+            List<String> formats2 = new ArrayList<>();
+            formats2.add("Restricciones");
+            formats2.add("Ver T.G. 02");
+            formats2.add("Los dos primeros dígitos son el mes y los otros 4 siguientes un correlativo (MM0001)");
+            formats2.add("Ver T.G. 03");
+            formats2.add("Solo Fecha");
+            formats2.add("Solo Fecha");
+            formats2.add("Ver T.G.56 Clave 'DOC'");
+            formats2.add("");
+            formats2.add("");
+            formats2.add("Sólo 0, 1, 4, 6, 7 y A");
+            formats2.add("Ingresar solo anexos.");
+            formats2.add("Glosa");
+            formats2.add("Sólo números");
+            formats2.add("Sólo números");
+            formats2.add("Sólo números");
+            formats2.add("Sólo números");
+            formats2.add("Sólo números");
+            formats2.add("Sólo números");
+            formats2.add("Sólo números");
+            formats2.add("Sólo números");
+            formats2.add("Sólo números");
+            formats2.add("Solo: 'C'= Especial, 'M'=Compra, 'V'=Venta");
+            formats2.add("Llenar solo si el tipo de cambio es 'C'");
+            formats2.add("Fecha documento");
+            formats2.add("Tipo de documento");
+            formats2.add("Serie de documento");
+            formats2.add("Número de documento");
+            formats2.add("T.G. 56 Mantenimiento en parámetros de ventas.");
+            formats2.add("T.G. 56 Mantenimiento en parámetros de ventas.");
+            formats2.add("Si Cuenta Contable tiene habilitado la área, ver T.G. 26");
+            formats2.add("Si Cuenta Contable tiene habilitado C. Costo, Ver T.G. 05");
+            formats2.add("Ingresar solo anexos.");
+            for (int j = 0; j <32; j++) {
+                Cell cell = formato2.createCell(j);
+                cell.setCellValue(formats2.get(j));
+            }
             List<String> formats = new ArrayList<>();
             formats.add("Tamaño/Formato");
             formats.add("2 Caracteres");
@@ -92,8 +168,8 @@ public class HelloController {
             formats.add("6 caracteres");
             formats.add("6 caracteres");
             for (int j = 0; j <32; j++) {
-                Cell cell = formato.createCell(j);
-
+                Cell cell = formato3.createCell(j);
+                cell.setCellValue(formats.get(j));
             }
             Row fila = hoja.createRow(i+2);
 
