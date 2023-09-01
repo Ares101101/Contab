@@ -1,37 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.contab.contab.HelloController">
-   <children>
-      <BorderPane AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
-         <top>
-            <MenuBar prefHeight="30.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+<BorderPane id="panelTo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-radius: 12; -fx-background-color: black;" stylesheets="/application.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <FlowPane BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="24.0" prefWidth="800.0">
+               <children>
+                  <Button mnemonicParsing="false" style="-fx-background-color: transparente;">
+                     <graphic>
+                        <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../recurs/red.png" />
+                           </image>
+                           <rotationAxis>
+                              <Point3D />
+                           </rotationAxis>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="12.0" prefWidth="23.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../recurs/hellow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="12." prefWidth="12.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../recurs/green.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Button>
+                  <Label id="title" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="24.0" prefWidth="642.0" stylesheets="/application.css" text="Contab">
+                     <padding>
+                        <Insets top="2.0" />
+                     </padding></Label>
+               </children>
+            </HBox>
+            <MenuBar prefHeight="25.0" prefWidth="802.0">
               <menus>
-                <Menu mnemonicParsing="false" text="Ventas">
+                <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem fx:id="ventasForm" mnemonicParsing="false" onAction="#ventasFor" text="ventas form" />
-                        <MenuItem fx:id="cobrodeventas" mnemonicParsing="false" text="cobro de ventas " />
+                    <MenuItem mnemonicParsing="false" text="Close" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Compras">
+                <Menu mnemonicParsing="false" text="Edit">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="compras form" />
-                        <MenuItem mnemonicParsing="false" text="pago de ventas " />
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
                   </items>
                 </Menu>
               </menus>
             </MenuBar>
-         </top>
-         <center>
-         
-                   <Label fx:id="welcomeText" BorderPane.alignment="CENTER" />
-         </center>
-      </BorderPane>
-   </children>
-</AnchorPane>
+         </children>
+      </FlowPane>
+   </top>
+</BorderPane>

@@ -331,7 +331,7 @@ public class HelloController {
         AnchorPane subWindowRoot = subWindowLoader.load();
         Scene subWindowScene = new Scene(subWindowRoot);
         Stage subWindowStage = new Stage();
-        subWindowStage.initStyle(StageStyle.UNDECORATED);
+        subWindowStage.initStyle(StageStyle.TRANSPARENT);
         subWindowStage.setScene(subWindowScene);
         subWindowStage.show();
 
