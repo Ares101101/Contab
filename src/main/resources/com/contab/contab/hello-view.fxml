@@ -7,23 +7,24 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane id="panelTo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-radius: 12; -fx-background-color: black;" stylesheets="/application.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane id="panelTo" fx:id="PanelCenter" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#drangged" onMousePressed="#pressed" prefHeight="600" prefWidth="900" style="-fx-background-radius: 12; -fx-background-color: #535353;" stylesheets="/application.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.contab.contab.HelloController">
    <top>
-      <FlowPane BorderPane.alignment="CENTER">
+      <FlowPane>
          <children>
-            <HBox prefHeight="24.0" prefWidth="800.0">
+            <HBox id="bar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="900.0" style="-fx-background-color: #1e1e1e;">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: transparente;">
+                  <Button fx:id="closedBo" mnemonicParsing="false" onMousePressed="#closeB" prefHeight="22.0" prefWidth="21.0" style="-fx-background-color: transparent;">
                      <graphic>
                         <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../recurs/red.png" />
+                              <Image url="@../../../recurs/Control.png" />
                            </image>
                            <rotationAxis>
                               <Point3D />
@@ -36,12 +37,18 @@
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="3.0" left="8.0" right="3.0" top="4.0" />
+                     </padding>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="12.0" prefWidth="23.0" style="-fx-background-color: transparent;">
+                  <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
                      <graphic>
                         <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../recurs/hellow.png" />
+                              <Image url="@../../../recurs/Control%20(1).png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -51,26 +58,36 @@
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis>
+                     <padding>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="4.0" />
+                     </padding>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="12." prefWidth="12.0" style="-fx-background-color: transparent;">
+                  <Button mnemonicParsing="false" onMousePressed="#minimizarVentana" prefHeight="12.0" style="-fx-background-color: transparent;">
                      <graphic>
                         <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../recurs/green.png" />
+                              <Image url="@../../../recurs/Control%20(2).png" />
                            </image>
+                           <effect>
+                              <ColorAdjust contrast="-0.94" />
+                           </effect>
                         </ImageView>
                      </graphic>
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis>
+                     <padding>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="4.0" />
+                     </padding>
                   </Button>
-                  <Label id="title" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="24.0" prefWidth="642.0" stylesheets="/application.css" text="Contab">
+                  <Label id="title" alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="19.0" prefWidth="409.0" stylesheets="/application.css" text="Contab">
                      <padding>
                         <Insets top="2.0" />
-                     </padding></Label>
+                     </padding>
+                  </Label>
                </children>
             </HBox>
-            <MenuBar prefHeight="25.0" prefWidth="802.0">
+            <MenuBar maxWidth="Infinity" prefHeight="25.0" prefWidth="900.0" style="-fx-background-color: #535353;">
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>

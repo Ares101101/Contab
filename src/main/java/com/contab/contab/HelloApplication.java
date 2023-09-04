@@ -15,11 +15,12 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.setFill(Color.TRANSPARENT);
-        //stage.setMaximized(true);
+
         stage.setTitle("contab");
         stage.initStyle(StageStyle.TRANSPARENT);
-        //scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
+
         stage.setScene(scene);
+        stage.setResizable(true);
         stage.show();
     }
 

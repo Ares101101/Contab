@@ -3,6 +3,7 @@ package com.contab.contab;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -10,11 +11,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +32,10 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class HelloController {
-
+    @FXML
+    private Button closeBo;
+    @FXML
+    private BorderPane  PanelCenter;
     @FXML
     private static MenuItem ventasForm;
     @FXML
@@ -38,9 +44,15 @@ public class HelloController {
     private Button close;
     @FXML
     private AnchorPane scenePane;
+
     Stage stage;
     private double xOffset = 0;
     private double yOffset = 0;
+    @FXML private void minimizarVentana(){
+        stage = (Stage) PanelCenter.getScene().getWindow();
+        System.out.println("minimizo");
+        stage.setIconified(true);
+    };
 
     public static boolean contieneSaltoDeLinea(String texto) {
         return texto.contains("\n");
@@ -343,6 +355,12 @@ public class HelloController {
         stage.close();
     }
     @FXML
+    protected void closeB(){
+        stage = (Stage) PanelCenter.getScene().getWindow();
+        System.out.println("cerro perfectamente");
+        stage.close();
+    }
+    @FXML
     protected void buscar(){
         JFileChooser fileChooser = new JFileChooser();
         int response = fileChooser.showOpenDialog(null);
@@ -399,4 +417,17 @@ public class HelloController {
             System.out.println( e.getMessage());
         }
     }
+    double x , y ;
+    public void drangged(javafx.scene.input.MouseEvent event) {
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setX(event.getScreenX()-x);
+        stage.setY(event.getScreenY()-y);
+    }
+
+    public void pressed(javafx.scene.input.MouseEvent mouseEvent) {
+        x = mouseEvent.getSceneX();
+        y = mouseEvent.getSceneY();
+    }
+
+
 }

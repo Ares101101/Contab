@@ -3,3 +3,6 @@
     -fx-text-fill: rgba(235, 235, 245, .60);
     -fx-font-weight: 700;
 }
+#bar{
+    -fx-background-radius: 12px 12px 0px 0px;
+}
