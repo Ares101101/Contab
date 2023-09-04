@@ -20,7 +20,7 @@
          <children>
             <HBox id="bar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="900.0" style="-fx-background-color: #1e1e1e;">
                <children>
-                  <Button fx:id="closedBo" mnemonicParsing="false" onMousePressed="#closeB" prefHeight="22.0" prefWidth="21.0" style="-fx-background-color: transparent;">
+                  <Button fx:id="closedBo" mnemonicParsing="false" onMousePressed="#closeB" prefHeight="22.0" prefWidth="21.0" style="-fx-background-color: transparent;" styleClass="buttonClose">
                      <graphic>
                         <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
                            <image>
