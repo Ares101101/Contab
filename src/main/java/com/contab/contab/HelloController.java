@@ -19,6 +19,7 @@ import javafx.stage.StageStyle;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -48,7 +49,23 @@ public class HelloController {
     Stage stage;
     private double xOffset = 0;
     private double yOffset = 0;
-    @FXML private void minimizarVentana(){
+    @FXML
+    private void maximizarVentana(){
+        stage = (Stage) PanelCenter.getScene().getWindow();
+        if(stage.isMaximized()){
+            stage.setMaximized(false);
+        }else{
+            stage.setMaximized(true);
+            Rectangle screenBounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0].getDefaultConfiguration().getBounds();
+            Insets screenInsets = Toolkit.getDefaultToolkit().getScreenInsets(GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration());
+
+            double usableScreenHeight = screenBounds.getHeight() - (screenInsets.top + screenInsets.bottom);
+            System.out.println( usableScreenHeight);
+            stage.setHeight(usableScreenHeight);
+        };
+    }
+    @FXML
+    private void minimizarVentana(){
         stage = (Stage) PanelCenter.getScene().getWindow();
         System.out.println("minimizo");
         stage.setIconified(true);
@@ -338,21 +355,15 @@ public class HelloController {
     }
 
     @FXML
-    protected void ventasFor() throws IOException {
-        FXMLLoader subWindowLoader = new FXMLLoader(getClass().getResource("subventana.fxml"));
-        AnchorPane subWindowRoot = subWindowLoader.load();
-        Scene subWindowScene = new Scene(subWindowRoot);
-        Stage subWindowStage = new Stage();
-        subWindowStage.initStyle(StageStyle.TRANSPARENT);
-        subWindowStage.setScene(subWindowScene);
-        subWindowStage.show();
-
+    protected void ventasFor(Event event) throws IOException {
+        URL url = getClass().getResource("subventana.fxml");
+        AnchorPane view = FXMLLoader.load(url);
+        PanelCenter.setLeft(view);
     }
     @FXML
     protected void closeButtom (){
-        stage = (Stage) scenePane.getScene().getWindow();
-        System.out.println("cerro perfectamente");
-        stage.close();
+
+        PanelCenter.setLeft(null);
     }
     @FXML
     protected void closeB(){
@@ -420,8 +431,10 @@ public class HelloController {
     double x , y ;
     public void drangged(javafx.scene.input.MouseEvent event) {
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setX(event.getScreenX()-x);
-        stage.setY(event.getScreenY()-y);
+        if(!stage.isMaximized()){
+            stage.setX(event.getScreenX()-x);
+            stage.setY(event.getScreenY()-y);
+        };
     }
 
     public void pressed(javafx.scene.input.MouseEvent mouseEvent) {

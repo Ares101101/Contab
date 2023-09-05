@@ -10,14 +10,14 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane fx:id="PanelCenter" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#drangged" onMousePressed="#pressed" prefHeight="600" prefWidth="900" styleClass="panelTo" stylesheets="/application.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.contab.contab.HelloController">
    <top>
-      <FlowPane prefHeight="48.0" prefWidth="900.0">
+      <VBox>
          <children>
-            <HBox id="bar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="900.0">
+            <HBox id="bar" prefHeight="24.0" prefWidth="900.0">
                <children>
                   <Button fx:id="closedBo" mnemonicParsing="false" onMousePressed="#closeB" prefHeight="16.0" prefWidth="16.0" styleClass="buttonCloseRed">
                      <graphic>
@@ -43,7 +43,7 @@
                         <Insets bottom="3.0" left="3.0" right="3.0" top="4.0" />
                      </padding>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="16.0" styleClass="buttonMaxStyle">
+                  <Button mnemonicParsing="false" onMouseClicked="#maximizarVentana" prefHeight="16.0" prefWidth="16.0" styleClass="buttonMaxStyle">
                      <graphic>
                         <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -79,7 +79,7 @@
                         <Insets bottom="3.0" left="3.0" right="3.0" top="4.0" />
                      </padding>
                   </Button>
-                  <Label id="title" alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="19.0" prefWidth="412.0" stylesheets="/application.css" text="Contab">
+                  <Label id="title" alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="19.0" prefWidth="840.0" stylesheets="/application.css" text="Contab">
                      <padding>
                         <Insets top="2.0" />
                      </padding>
@@ -90,7 +90,7 @@
                <children>
                   <MenuButton mnemonicParsing="false" prefHeight="0.0" styleClass="VentasClass" text="Ventas" textFill="#99999e">
                     <items>
-                      <MenuItem mnemonicParsing="false" styleClass="generarVentasClass" text="generar Ventas" />
+                      <MenuItem mnemonicParsing="false" onAction="#ventasFor" styleClass="generarVentasClass" text="generar Ventas" />
                     </items>
                      <HBox.margin>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
@@ -108,6 +108,6 @@
                </children>
             </HBox>
          </children>
-      </FlowPane>
+      </VBox>
    </top>
 </BorderPane>

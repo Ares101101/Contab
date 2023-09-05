@@ -23,7 +23,7 @@
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" />
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <Button fx:id="close" layoutY="2.0" mnemonicParsing="false" onAction="#closeButtom" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #1b263b;" text="x" textFill="WHITE" />
+                                    <Button fx:id="close" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#closeButtom" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #1b263b;" text="x" textFill="WHITE" />
                                  </children></AnchorPane>
                            </children>
                         </HBox>
