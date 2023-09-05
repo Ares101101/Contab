@@ -4,5 +4,51 @@
     -fx-font-weight: 700;
 }
 #bar{
-    -fx-background-radius: 12px 12px 0px 0px;
+    -fx-background-radius: 8px 8px 0px 0px;
+    -fx-background-color: #1e1e1e;
+}
+.panelTo{
+    -fx-background-radius: 8px;
+    -fx-background-color: #535353;
+}
+.menuBarClass{
+    -fx-background-color: #282828;
+
+}
+.buttonCloseRed{
+    -fx-background-color: "transparent";
+}
+.buttonCloseRed:hover{
+    -fx-background-color: #d70015;
+}
+.buttonMaxStyle{
+    -fx-background-color: "transparent";
+}
+.buttonMaxStyle:hover{
+    -fx-background-color: #ffa914;
+}
+.buttonMini{
+    -fx-background-color: "transparent";
+}
+.buttonMini:hover{
+    -fx-background-color: #69696e;
+}
+.VentasClass{
+    -fx-background-color: #282828;
+    -fx-background-radius: 0px;
+}
+.VentasClass:hover{
+    -fx-background-color: #535353;
+
+}
+.generarVentasClass{
+    -fx-background-color: #535353;
+
+}
+.ComprasClass{
+    -fx-background-color: #282828;
+    -fx-background-radius: 0px;
+}
+.ComprasClass:hover{
+    -fx-background-color: #535353;
 }
