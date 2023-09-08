@@ -1,0 +1,26 @@
+.SubMenuClass{
+    -fx-background-color: #0d1b2a ;
+
+}
+.panelClassSub{
+    -fx-background-color: #778da9;
+    -fx-background-radius: 0px 0px 0px 8px;
+
+}
+.titleClassSub{
+    -fx-font-family:"SF Pro Display",Serif;
+    -fx-text-fill: rgba(235, 235, 245, .60);
+    -fx-font-weight: 700;
+}
+.escritorioBclass{
+    -fx-background-color: #415a77 ;
+    -fx-background-radius:  8px;
+}
+.BuscarStyleClass{
+    -fx-background-color: #415a77;
+    -fx-background-radius:  8px;
+}
+.BuscarStyleClass:hover{
+    -fx-background-color: #415a77;
+    -fx-background-radius: 8px;
+}

@@ -36,8 +36,6 @@ public class HelloController {
     @FXML
     private Button closeBo;
     @FXML
-    private BorderPane  PanelCenter;
-    @FXML
     private static MenuItem ventasForm;
     @FXML
     private Label buscador;
@@ -51,7 +49,7 @@ public class HelloController {
     private double yOffset = 0;
     @FXML
     private void maximizarVentana(){
-        stage = (Stage) PanelCenter.getScene().getWindow();
+       /* stage = (Stage) PanelCenter.getScene().getWindow();
         if(stage.isMaximized()){
             stage.setMaximized(false);
         }else{
@@ -62,7 +60,7 @@ public class HelloController {
             double usableScreenHeight = screenBounds.getHeight() - (screenInsets.top + screenInsets.bottom);
             System.out.println( usableScreenHeight);
             stage.setHeight(usableScreenHeight);
-        };
+        };*/
     }
     @FXML
     private void minimizarVentana(){
@@ -353,17 +351,19 @@ public class HelloController {
         }
 
     }
-
+    @FXML
+    private BorderPane  PanelCenter;
+    @FXML
+    protected void closeButtom(Event event) throws IOException {
+        System.out.println(PanelCenter);
+    }
     @FXML
     protected void ventasFor(Event event) throws IOException {
         URL url = getClass().getResource("subventana.fxml");
-        AnchorPane view = FXMLLoader.load(url);
+        BorderPane view = FXMLLoader.load(url);
+        System.out.println(PanelCenter);
         PanelCenter.setLeft(view);
-    }
-    @FXML
-    protected void closeButtom (){
-
-        PanelCenter.setLeft(null);
+        System.out.println(PanelCenter);
     }
     @FXML
     protected void closeB(){

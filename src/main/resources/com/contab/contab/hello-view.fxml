@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="PanelCenter" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#drangged" onMousePressed="#pressed" prefHeight="600" prefWidth="900" styleClass="panelTo" stylesheets="/application.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.contab.contab.HelloController">
+<BorderPane fx:id="PanelCenter" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#drangged" onMousePressed="#pressed" prefHeight="600.0" prefWidth="900" styleClass="panelTo" stylesheets="/application.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.contab.contab.HelloController">
    <top>
       <VBox>
          <children>
@@ -79,7 +79,7 @@
                         <Insets bottom="3.0" left="3.0" right="3.0" top="4.0" />
                      </padding>
                   </Button>
-                  <Label id="title" alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="19.0" prefWidth="840.0" stylesheets="/application.css" text="Contab">
+                  <Label id="title" alignment="TOP_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="19.0" prefWidth="414.0" stylesheets="/application.css" text="Contab">
                      <padding>
                         <Insets top="2.0" />
                      </padding>
