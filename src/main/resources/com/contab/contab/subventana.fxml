@@ -3,28 +3,43 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane prefHeight="560.0" prefWidth="450.0" styleClass="panelClassSub" stylesheets="/subVentanas.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.contab.contab.HelloController">
+<BorderPane prefHeight="560.0" prefWidth="900.0" styleClass="panelClassSub" stylesheets="/subVentanas.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.contab.contab.HelloController">
    <top>
       <HBox prefHeight="24.0" prefWidth="600.0" styleClass="SubMenuClass" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="19.0" prefWidth="479.0" styleClass="titleClassSub" stylesheets="/application.css" text="Ventas">
+            <Label alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="21.0" prefWidth="906.0" styleClass="titleClassSub" stylesheets="/application.css" text="Ventas">
                <padding>
-                  <Insets top="2.0" />
+                  <Insets top="4.0" />
                </padding>
             </Label>
          </children>
       </HBox>
    </top>
-   <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="450.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="procesar" layoutX="189.0" layoutY="218.0" mnemonicParsing="false" onAction="#generarVentas" prefHeight="25.0" prefWidth="72.0" styleClass="BuscarStyleClass" text="Generar" textFill="#ebebf599" />
             <Label fx:id="buscador" layoutX="96.0" layoutY="100.0" onMouseClicked="#buscar" prefHeight="26.0" prefWidth="260.0" styleClass="escritorioBclass" text="  🔍 Buscar" textFill="#ebebf599" />
          </children>
       </AnchorPane>
-   </center>
+   </left>
+   <right>
+      <AnchorPane prefHeight="200.0" prefWidth="450.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView prefHeight="536.0" prefWidth="450.0">
+              <columns>
+                <TableColumn prefWidth="75.0" />
+                <TableColumn prefWidth="75.0" />
+                  <TableColumn prefWidth="75.0" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </right>
 </BorderPane>
