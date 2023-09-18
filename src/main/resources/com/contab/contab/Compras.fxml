@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane prefHeight="560.0" prefWidth="900.0" styleClass="panelClassSub" stylesheets="/subVentanas.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.contab.contab.HelloController">
+   <top>
+      <HBox prefHeight="24.0" prefWidth="600.0" styleClass="SubMenuClass" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="21.0" prefWidth="906.0" styleClass="titleClassSub" stylesheets="/application.css" text="Compras">
+               <padding>
+                  <Insets top="4.0" />
+               </padding>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="procesar" layoutX="640.0" layoutY="310.0" mnemonicParsing="false" onAction="#generarCompras" prefHeight="25.0" prefWidth="72.0" styleClass="BuscarStyleClass" text="Generar" textFill="#ebebf599" />
+            <Label fx:id="buscador" alignment="CENTER" layoutX="89.0" layoutY="97.0" onMouseClicked="#buscar" prefHeight="26.0" prefWidth="260.0" styleClass="escritorioBclass" text="  🔍 Buscar" textFill="#ebebf599" />
+            <MenuButton layoutX="182.0" layoutY="231.0" mnemonicParsing="false" styleClass="BuscarStyleClass" text="Cuentas" textFill="#ebebf599">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#cuentaGeneral" text="codos con una cuenta" />
+                  <MenuItem mnemonicParsing="false" text="llenar cuenta " />
+              </items>
+            </MenuButton>
+            <Label fx:id="glosaDeCuenta" alignment="CENTER" layoutX="546.0" layoutY="168.0" prefHeight="26.0" prefWidth="260.0" styleClass="escritorioBclass" text="  ingresar cuenta " textFill="#ebebf599" />
+            <Label fx:id="glosaDeproveedores" alignment="CENTER" layoutX="450.0" layoutY="97.0" prefHeight="26.0" prefWidth="451.0" styleClass="escritorioBclass" textFill="#ebebf599" />
+            <Label fx:id="centroDeCosto" alignment="CENTER" layoutX="546.0" layoutY="231.0" prefHeight="26.0" prefWidth="260.0" styleClass="escritorioBclass" text="ingresar centro de costo" textFill="#ebebf599" />
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

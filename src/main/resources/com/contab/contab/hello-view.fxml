@@ -98,8 +98,7 @@
                   </MenuButton>
                   <MenuButton mnemonicParsing="false" styleClass="ComprasClass" text="Compras" textFill="#99999e">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                      <MenuItem mnemonicParsing="false" onAction="#comprasFor" styleClass="generarVentasClass" text="generar Compras" />
                     </items>
                      <HBox.margin>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />

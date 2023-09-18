@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.lang.*;
+
+
 
 public class HelloApplication extends Application {
     @Override
@@ -22,6 +25,7 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.setResizable(true);
         stage.show();
+
     }
 
     public static void main(String[] args) {
