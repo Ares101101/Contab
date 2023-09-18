@@ -33,7 +33,7 @@
               </items>
             </MenuButton>
             <Label fx:id="glosaDeCuenta" alignment="CENTER" layoutX="546.0" layoutY="168.0" prefHeight="26.0" prefWidth="260.0" styleClass="escritorioBclass" text="  ingresar cuenta " textFill="#ebebf599" />
-            <Label fx:id="glosaDeproveedores" alignment="CENTER" layoutX="450.0" layoutY="97.0" prefHeight="26.0" prefWidth="451.0" styleClass="escritorioBclass" textFill="#ebebf599" />
+            <Label fx:id="glosaDeproveedores" alignment="CENTER" layoutX="450.0" layoutY="97.0" prefHeight="26.0" prefWidth="451.0" styleClass="escritorioBclassC" textFill="#ebebf599" />
             <Label fx:id="centroDeCosto" alignment="CENTER" layoutX="546.0" layoutY="231.0" prefHeight="26.0" prefWidth="260.0" styleClass="escritorioBclass" text="ingresar centro de costo" textFill="#ebebf599" />
          </children>
       </AnchorPane>
