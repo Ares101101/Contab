@@ -14,13 +14,21 @@
 }
 .escritorioBclass{
     -fx-background-color: #415a77 ;
-    -fx-background-radius:  8px;
+    -fx-background-radius:  3px;
 }
 .BuscarStyleClass{
     -fx-background-color: #415a77;
-    -fx-background-radius:  8px;
+    -fx-background-radius:  3px;
 }
 .BuscarStyleClass:hover{
     -fx-background-color: #415a77;
-    -fx-background-radius: 8px;
+    -fx-background-radius: 3px;
+}
+.escritorioLclass{
+    -fx-background-color: #415a77 ;
+    -fx-background-radius:  3px 3px 0px 0px;
+}
+.escritorioTclass{
+
+    -fx-background-radius:  0px 0px 3px 3px;
 }

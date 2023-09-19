@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -24,17 +25,21 @@
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="procesar" layoutX="640.0" layoutY="310.0" mnemonicParsing="false" onAction="#generarCompras" prefHeight="25.0" prefWidth="72.0" styleClass="BuscarStyleClass" text="Generar" textFill="#ebebf599" />
-            <Label fx:id="buscador" alignment="CENTER" layoutX="89.0" layoutY="97.0" onMouseClicked="#buscar" prefHeight="26.0" prefWidth="260.0" styleClass="escritorioBclass" text="  🔍 Buscar" textFill="#ebebf599" />
-            <MenuButton layoutX="182.0" layoutY="231.0" mnemonicParsing="false" styleClass="BuscarStyleClass" text="Cuentas" textFill="#ebebf599">
+            <TextField fx:id="cuentasContables" layoutX="545.0" layoutY="169.0" prefHeight="25.0" prefWidth="261.0" styleClass="escritorioTclass" />
+            <Button fx:id="procesar" layoutX="640.0" layoutY="347.0" mnemonicParsing="false" onAction="#generarCompras" prefHeight="25.0" prefWidth="72.0" styleClass="BuscarStyleClass" text="Generar" textFill="#ebebf599" />
+            <Label fx:id="buscador" alignment="CENTER" layoutX="89.0" layoutY="99.0" onMouseClicked="#buscar" prefHeight="24.0" prefWidth="260.0" styleClass="escritorioBclass" text="  🔍 Buscar" textFill="#ebebf599" />
+            <MenuButton layoutX="182.0" layoutY="232.0" mnemonicParsing="false" styleClass="BuscarStyleClass" text="Cuentas" textFill="#ebebf599">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#cuentaGeneral" text="codos con una cuenta" />
-                  <MenuItem mnemonicParsing="false" text="llenar cuenta " />
+                  <MenuItem mnemonicParsing="false" onAction="#cuentasGeneral" text="llenar cuenta " />
               </items>
             </MenuButton>
-            <Label fx:id="glosaDeCuenta" alignment="CENTER" layoutX="546.0" layoutY="168.0" prefHeight="26.0" prefWidth="260.0" styleClass="escritorioBclass" text="  ingresar cuenta " textFill="#ebebf599" />
-            <Label fx:id="glosaDeproveedores" alignment="CENTER" layoutX="450.0" layoutY="97.0" prefHeight="26.0" prefWidth="451.0" styleClass="escritorioBclassC" textFill="#ebebf599" />
-            <Label fx:id="centroDeCosto" alignment="CENTER" layoutX="546.0" layoutY="231.0" prefHeight="26.0" prefWidth="260.0" styleClass="escritorioBclass" text="ingresar centro de costo" textFill="#ebebf599" />
+            <Label fx:id="glosaDeproveedores" alignment="CENTER" layoutX="460.0" layoutY="98.0" prefHeight="26.0" prefWidth="432.0" styleClass="escritorioBclassC" textFill="#ebebf599" />
+            <Label alignment="CENTER" layoutX="546.0" layoutY="208.0" prefHeight="24.0" prefWidth="261.0" styleClass="escritorioLclass" text="ingresar centro de costo" textFill="#ebebf599" />
+            <Label alignment="CENTER" layoutX="545.0" layoutY="145.0" prefHeight="24.0" prefWidth="261.0" styleClass="escritorioLclass" text="ingresar cuenta contable" textFill="#ebebf599" />
+            <TextField fx:id="centrodecosto" layoutX="546.0" layoutY="232.0" prefHeight="25.0" prefWidth="261.0" styleClass="escritorioTclass" />
+            <Button fx:id="geneCu" layoutX="640.0" layoutY="299.0" mnemonicParsing="false" onAction="#pushCompras" prefHeight="25.0" prefWidth="72.0" styleClass="BuscarStyleClass" text="push" textFill="#ebebf599" />
+            <Button fx:id="geneCu1" layoutX="640.0" layoutY="299.0" mnemonicParsing="false" onAction="#pushCompras1" prefHeight="25.0" prefWidth="72.0" styleClass="BuscarStyleClass" text="push" textFill="#ebebf599" />
          </children>
       </AnchorPane>
    </left>

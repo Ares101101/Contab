@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Circle;
@@ -47,6 +48,7 @@ public class HelloController {
     private AnchorPane scenePane;
     @FXML
     private Label glosaDeproveedores;
+
     Stage stage;
     private double xOffset = 0;
     private double yOffset = 0;
@@ -633,9 +635,19 @@ public class HelloController {
                         celda.setCellValue("421202");
                     }
                 }if(celda.getColumnIndex() == 30){
-
+                    String cache = arrayLists.get(i).get(arrayLists.get(i).size()-2);
+                    if(cache.equals("0")){
+                        celda.setCellValue("");
+                    }else{
+                        celda.setCellValue(cache);
+                    }
                 }if(celda.getColumnIndex() == 31){
-
+                    String cache = arrayLists.get(i).get(arrayLists.get(i).size()-1);
+                    if(cache.equals("0")){
+                        celda.setCellValue("");
+                    }else{
+                        celda.setCellValue(cache);
+                    }
                 }if(celda.getColumnIndex() == 33){
                     String cache = arrayLists.get(i).get(15);
                     String base =  arrayLists.get(i).get(14);
@@ -645,11 +657,10 @@ public class HelloController {
                         celda.setCellValue("18");
                     }
                 }
-                /*else if ( celda.getColumnIndex() > 3 && numcel<=arrayLists.get(i).size()) {
-                    celda.setCellValue(arrayLists.get(i).get(numcel));
-                }*/
+
             }
         }
+
     }
     public static void excelGenetCompras(ArrayList<ArrayList<String>> arrayLists) {
         //CREA ARCHIVO LIBRO
@@ -768,53 +779,13 @@ public class HelloController {
             System.out.println( e.getMessage());
         }
     }
+    ArrayList<ArrayList<String>> DatosBidimensionalComp = new ArrayList<>();
     @FXML
     protected void generarCompras(){
         System.out.println(buscador.getText());
-
-
-        try {
-            InputStream fichero = new FileInputStream(String.valueOf(buscador.getText()));
-            BufferedInputStream ficheroBuffered = new BufferedInputStream(fichero);
-            try {
-                int dato = ficheroBuffered.read();
-                int i = 0;
-                String cache = "";
-                ArrayList<ArrayList<String>> DatosBidimensional = new ArrayList<>();
-                DatosBidimensional.add(new ArrayList<>());
-
-                while (dato != -1){
-                    if ( (char) dato != '|' )  {
-                        cache += String.valueOf((char) dato);
-                        dato = ficheroBuffered.read();
-                    } else {
-                        if (contieneSaltoDeLinea(cache)){
-                            String[] lineas = cache.split("\n");
-                            DatosBidimensional.add(new ArrayList<>());
-                            DatosBidimensional.get(i).add(lineas[0]);
-                            i++;
-                            DatosBidimensional.get(i).add(lineas[1]);
-                            cache = "";
-                            dato = ficheroBuffered.read();
-                        }else {
-                            DatosBidimensional.get(i).add(cache);
-                            cache = "";
-                            dato = ficheroBuffered.read();
-                        }
-                    }
-                }
-                DatosBidimensional.get(DatosBidimensional.size()-1).add(cache);
-                for (int e = 0; e < DatosBidimensional.size(); e++) {
-                    System.out.println(DatosBidimensional.get(e));
-                }
-                excelGenetCompras(DatosBidimensional);
-
-            }catch (IOException e){
-                System.out.println("no puede leer el fichero"+ e.getMessage());
-            }
-        }catch (FileNotFoundException e){
-            System.out.println( e.getMessage());
-        }
+        excelGenetCompras(DatosBidimensionalComp);
+        DatosBidimensionalComp.clear();
+        number = 1;
     }
     double x , y ;
     public void drangged(javafx.scene.input.MouseEvent event) {
@@ -832,6 +803,125 @@ public class HelloController {
     @FXML
     public void cuentaGeneral(ActionEvent actionEvent) {
         glosaDeproveedores.setStyle("-fx-background-color: transparent");
-        
+        glosaDeproveedores.setStyle("-fx-text-fill:transparent");
+        DatosBidimensionalComp.clear();
+        try {
+            InputStream fichero = new FileInputStream(String.valueOf(buscador.getText()));
+            BufferedInputStream ficheroBuffered = new BufferedInputStream(fichero);
+            try {
+                int dato = ficheroBuffered.read();
+                int i = 0;
+                String cache = "";
+
+                DatosBidimensionalComp.add(new ArrayList<>());
+
+                while (dato != -1){
+                    if ( (char) dato != '|' )  {
+                        cache += String.valueOf((char) dato);
+                        dato = ficheroBuffered.read();
+                    } else {
+                        if (contieneSaltoDeLinea(cache)){
+                            String[] lineas = cache.split("\n");
+                            DatosBidimensionalComp.add(new ArrayList<>());
+                            DatosBidimensionalComp.get(i).add(lineas[0]);
+                            i++;
+                            DatosBidimensionalComp.get(i).add(lineas[1]);
+                            cache = "";
+                            dato = ficheroBuffered.read();
+                        }else {
+                            DatosBidimensionalComp.get(i).add(cache);
+                            cache = "";
+                            dato = ficheroBuffered.read();
+                        }
+                    }
+                }
+                DatosBidimensionalComp.get(DatosBidimensionalComp.size()-1).add(cache);
+
+            }catch (IOException e){
+                System.out.println("no puede leer el fichero"+ e.getMessage());
+            }
+        }catch (FileNotFoundException e){
+            System.out.println( e.getMessage());
+        }
+        geneCu.setDisable(false);
+        geneCu1.setDisable(true);
+        geneCu1.setStyle("-fx-background-color: transparent");
+
+
+    }
+    @FXML
+    public void cuentasGeneral(ActionEvent actionEvent) {
+        glosaDeproveedores.setStyle("-fx-background-color: #415a77");
+        DatosBidimensionalComp.clear();
+        try {
+            InputStream fichero = new FileInputStream(String.valueOf(buscador.getText()));
+            BufferedInputStream ficheroBuffered = new BufferedInputStream(fichero);
+            try {
+                int dato = ficheroBuffered.read();
+                int i = 0;
+                String cache = "";
+
+                DatosBidimensionalComp.add(new ArrayList<>());
+
+                while (dato != -1){
+                    if ( (char) dato != '|' )  {
+                        cache += String.valueOf((char) dato);
+                        dato = ficheroBuffered.read();
+                    } else {
+                        if (contieneSaltoDeLinea(cache)){
+                            String[] lineas = cache.split("\n");
+                            DatosBidimensionalComp.add(new ArrayList<>());
+                            DatosBidimensionalComp.get(i).add(lineas[0]);
+                            i++;
+                            DatosBidimensionalComp.get(i).add(lineas[1]);
+                            cache = "";
+                            dato = ficheroBuffered.read();
+                        }else {
+                            DatosBidimensionalComp.get(i).add(cache);
+                            cache = "";
+                            dato = ficheroBuffered.read();
+                        }
+                    }
+                }
+                DatosBidimensionalComp.get(DatosBidimensionalComp.size()-1).add(cache);
+
+            }catch (IOException e){
+                System.out.println("no puede leer el fichero"+ e.getMessage());
+            }
+        }catch (FileNotFoundException e){
+            System.out.println( e.getMessage());
+        }
+        for (int i = 0; i < DatosBidimensionalComp.size(); i++) {
+            System.out.print(DatosBidimensionalComp.get(i));
+        }
+        geneCu.setDisable(false);
+        geneCu.setDisable(true);
+        geneCu.setStyle("-fx-background-color: transparent");
+        glosaDeproveedores.setText(number+"("+(DatosBidimensionalComp.size()-1)+")"+"-"+DatosBidimensionalComp.get(1).get(12)+" "+DatosBidimensionalComp.get(1).get(13) );
+        number = 1;
+    }
+    @FXML private  Button geneCu;
+    @FXML private  Button geneCu1;
+    @FXML
+    private TextField cuentasContables;
+    @FXML
+    private TextField centrodecosto;
+    @FXML
+    public void pushCompras(ActionEvent actionEvent) {
+        for (int i = 1; i < DatosBidimensionalComp.size(); i++) {
+            DatosBidimensionalComp.get(i).set(DatosBidimensionalComp.get(i).size()-2,cuentasContables.getText());
+            DatosBidimensionalComp.get(i).set(DatosBidimensionalComp.get(i).size()-1,centrodecosto.getText());
+            System.out.println(DatosBidimensionalComp.get(i));
+        }
+    }
+    int number = 1;
+    public void pushCompras1(ActionEvent actionEvent) {
+        DatosBidimensionalComp.get(number).set(DatosBidimensionalComp.get(number).size()-2,cuentasContables.getText());
+        DatosBidimensionalComp.get(number).set(DatosBidimensionalComp.get(number).size()-1,centrodecosto.getText());
+        System.out.println(DatosBidimensionalComp.get(number));
+        number++;
+        glosaDeproveedores.setText(number+"("+DatosBidimensionalComp.size()+")"+"-"+ DatosBidimensionalComp.get(number).get(12)+" "+DatosBidimensionalComp.get(number).get(13) );
+        cuentasContables.setText("");
+        centrodecosto.setText("");
     }
 }
