@@ -5,26 +5,18 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import javax.swing.*;
 
@@ -83,7 +75,7 @@ public class HelloController {
     }
     public static String comprobante ( Row fila){
         String ceros = "0000";
-        String total = ceros + String.valueOf( fila.getRowNum()-3);
+        String total = ceros + String.valueOf( fila.getRowNum()-2);
         return total.substring( total.length()-4, total.length());
     }
     public static void fechaV(ArrayList<ArrayList<String>> arrayLists, Sheet hoja){
@@ -93,39 +85,42 @@ public class HelloController {
             Row formato2 = hoja.createRow(1);
             Row formato3 = hoja.createRow(2);
             List<String> formats1 = new ArrayList<>();
-            formats1.add("VENTAS");
+            formats1.add("COMPRAS");
             formats1.add("SubDiario");
             formats1.add("Comprobante");
-            formats1.add("Moneda");
-            formats1.add("Fecha de emisión de comprobante de pago");
+            formats1.add("Fecha de comprobante");
+            formats1.add("Fecha de documento");
             formats1.add("Fecha de vencimiento o fecha de pago");
-            formats1.add("Tipo de documento");
-            formats1.add("Serie o Nro Maq Regist de documento");
-            formats1.add("Número de documento");
+            formats1.add("Tipo de Documento");
+            formats1.add("Número de Documento");
             formats1.add("Tipo de documento de identidad");
             formats1.add("Número de documento de identidad");
             formats1.add("Apellidos y Nombres, denominación o razón social del proveedor");
-            formats1.add("Valor facturado de la exportación");
-            formats1.add("Base imponible de la operación gravada");
-            formats1.add("Importe total de la operación Exonerada");
-            formats1.add("Importe total de la operación Inafecta");
-            formats1.add("ISC");
-            formats1.add("IGV Y/O IPM");
+            formats1.add("Moneda");
+            formats1.add("Base imponible");
+            formats1.add("IGV");
             formats1.add("ICBPER");
-            formats1.add("Otros tributos");
+            formats1.add("Valor de las adquisiciones no gravadas");
+            formats1.add("ISC");
+            formats1.add("Otros tributos y cargos");
             formats1.add("Importe total");
+            formats1.add("Número de constancia de depósito de detracción");
+            formats1.add("Fecha de emisión de constancia de depósito de detracción");
+            formats1.add("Importe detracción");
+            formats1.add("Código detracción");
             formats1.add("Tipo de Conversión");
             formats1.add("Tipo de cambio");
             formats1.add("Referencia del comprobante de pago que se modifica Fecha");
             formats1.add("Referencia del comprobante de pago que se modifica Tipo");
             formats1.add("Referencia del comprobante de pago que se modifica Serie");
             formats1.add("Referencia del comprobante de pago que se modifica Numero");
-            formats1.add("Cuenta contable por cobrar");
-            formats1.add("Cuenta contable de ingresos");
-            formats1.add("Area");
-            formats1.add("Centro de Costo");
-            formats1.add("Anexo de Referencia");
-            for (int j = 0; j <32; j++) {
+            formats1.add("Número de cuenta contable por pagar");
+            formats1.add("Número de cuenta contable de costo o gasto");
+            formats1.add("Centro de costo");
+            formats1.add("Anexo de referencia");
+            formats1.add("Tasa IGV");
+
+            for (int j = 0; j <formats1.size(); j++) {
                 Cell cell = formato1.createCell(j);
                 cell.setCellValue(formats1.get(j));
             }
@@ -133,15 +128,15 @@ public class HelloController {
             formats2.add("Restricciones");
             formats2.add("Ver T.G. 02");
             formats2.add("Los dos primeros dígitos son el mes y los otros 4 siguientes un correlativo (MM0001)");
-            formats2.add("Ver T.G. 03");
             formats2.add("Solo Fecha");
             formats2.add("Solo Fecha");
-            formats2.add("Ver T.G.56 Clave 'DOC'");
-            formats2.add("");
-            formats2.add("");
+            formats2.add("Solo Fecha");
+            formats2.add("Ver T.G.06 y T.G.53");
+            formats2.add("Serie-Número");
             formats2.add("Sólo 0, 1, 4, 6, 7 y A");
             formats2.add("Ingresar solo anexos.");
             formats2.add("Glosa");
+            formats2.add("Sólo 'MN' Y 'US'");
             formats2.add("Sólo números");
             formats2.add("Sólo números");
             formats2.add("Sólo números");
@@ -149,20 +144,23 @@ public class HelloController {
             formats2.add("Sólo números");
             formats2.add("Sólo números");
             formats2.add("Sólo números");
+            formats2.add("");
+            formats2.add("Solo Fecha");
             formats2.add("Sólo números");
-            formats2.add("Sólo números");
+            formats2.add("");
             formats2.add("Solo: 'C'= Especial, 'M'=Compra, 'V'=Venta");
-            formats2.add("Llenar solo si el tipo de cambio es 'C'");
-            formats2.add("Fecha documento");
-            formats2.add("Tipo de documento");
-            formats2.add("Serie de documento");
-            formats2.add("Número de documento");
-            formats2.add("T.G. 56 Mantenimiento en parámetros de ventas.");
-            formats2.add("T.G. 56 Mantenimiento en parámetros de ventas.");
-            formats2.add("Si Cuenta Contable tiene habilitado la área, ver T.G. 26");
+            formats2.add("Sólo números. Llenar solo si el tipo de cambio es 'C'");
+            formats2.add("Fecha documento. Llenar solo cuando el tipo de documento es nota de crédito o débito.");
+            formats2.add("Tipo de documento. Llenar solo cuando el tipo de documento es nota de crédito o débito.");
+            formats2.add("Serie de documento. Llenar solo cuando el tipo de documento es nota de crédito o débito.");
+            formats2.add("Número de documento. Llenar solo cuando el tipo de documento es nota de crédito o débito.");
+            formats2.add("T.G. 53 Mantenimiento en parámetros de compras.");
+            formats2.add("Ingresar una cuenta de gasto o costo del plan de cuentas y que no sea título.");
             formats2.add("Si Cuenta Contable tiene habilitado C. Costo, Ver T.G. 05");
             formats2.add("Ingresar solo anexos.");
-            for (int j = 0; j <32; j++) {
+            formats2.add("Obligatorio para comprobantes de compras, valores validos 0,10,18.");
+
+            for (int j = 0; j <formats2.size(); j++) {
                 Cell cell = formato2.createCell(j);
                 cell.setCellValue(formats2.get(j));
             }
@@ -194,12 +192,13 @@ public class HelloController {
             formats.add("2 caracteres");
             formats.add("10 caracteres");
             formats.add("20 caracteres");
-            formats.add("12 caracteres");
-            formats.add("12 caracteres");
-            formats.add("3 caracteres");
+            formats.add("8 caracteres");
+            formats.add("8 caracteres");
             formats.add("6 caracteres");
-            formats.add("6 caracteres");
-            for (int j = 0; j <32; j++) {
+            formats.add("20 caracteres");
+            formats.add("Numérico");
+
+            for (int j = 0; j <formats.size(); j++) {
                 Cell cell = formato3.createCell(j);
                 cell.setCellValue(formats.get(j));
             }
@@ -399,7 +398,7 @@ public class HelloController {
             formats1.add("Anexo de referencia");
             formats1.add("Tasa IGV");
 
-            for (int j = 0; j <32; j++) {
+            for (int j = 0; j <formats1.size(); j++) {
                 Cell cell = formato1.createCell(j);
                 cell.setCellValue(formats1.get(j));
             }
@@ -439,9 +438,11 @@ public class HelloController {
             formats2.add("Ingresar solo anexos.");
             formats2.add("Obligatorio para comprobantes de compras, valores validos 0,10,18.");
 
-            for (int j = 0; j <32; j++) {
+
+            for (int j = 0; j <formats2.size(); j++) {
                 Cell cell = formato2.createCell(j);
                 cell.setCellValue(formats2.get(j));
+                System.out.println(cell);
             }
             List<String> formats = new ArrayList<>();
             formats.add("Tamaño/Formato");
@@ -478,7 +479,8 @@ public class HelloController {
             formats.add("6 caracteres");
             formats.add("20 caracteres");
             formats.add("Numérico");
-            for (int j = 0; j <32; j++) {
+
+            for (int j = 0; j <formats.size(); j++) {
                 Cell cell = formato3.createCell(j);
                 cell.setCellValue(formats.get(j));
             }
@@ -651,10 +653,10 @@ public class HelloController {
                 }if(celda.getColumnIndex() == 33){
                     String cache = arrayLists.get(i).get(15);
                     String base =  arrayLists.get(i).get(14);
-                    if(Math.ceil(Double.parseDouble(cache)) == ( Math.ceil(Double.parseDouble(base)*0.1))){
-                        celda.setCellValue("10");
+                    if(Math.ceil(Double.parseDouble(cache)) == ( Math.ceil(Double.parseDouble(base)*0.18))){
+                        celda.setCellValue(18);
                     }else {
-                        celda.setCellValue("18");
+                        celda.setCellValue(10);
                     }
                 }
 
@@ -844,6 +846,7 @@ public class HelloController {
             System.out.println( e.getMessage());
         }
         geneCu.setDisable(false);
+        geneCu.setStyle("-fx-background-color: #415a77");
         geneCu1.setDisable(true);
         geneCu1.setStyle("-fx-background-color: transparent");
 
@@ -894,7 +897,8 @@ public class HelloController {
         for (int i = 0; i < DatosBidimensionalComp.size(); i++) {
             System.out.print(DatosBidimensionalComp.get(i));
         }
-        geneCu.setDisable(false);
+        geneCu1.setDisable(false);
+        geneCu1.setStyle("-fx-background-color: #415a77");
         geneCu.setDisable(true);
         geneCu.setStyle("-fx-background-color: transparent");
         glosaDeproveedores.setText(number+"("+(DatosBidimensionalComp.size()-1)+")"+"-"+DatosBidimensionalComp.get(1).get(12)+" "+DatosBidimensionalComp.get(1).get(13) );
@@ -920,7 +924,7 @@ public class HelloController {
         DatosBidimensionalComp.get(number).set(DatosBidimensionalComp.get(number).size()-1,centrodecosto.getText());
         System.out.println(DatosBidimensionalComp.get(number));
         number++;
-        glosaDeproveedores.setText(number+"("+DatosBidimensionalComp.size()+")"+"-"+ DatosBidimensionalComp.get(number).get(12)+" "+DatosBidimensionalComp.get(number).get(13) );
+        glosaDeproveedores.setText(number+"("+(DatosBidimensionalComp.size()-1)+")"+"-"+ DatosBidimensionalComp.get(number).get(12)+" "+DatosBidimensionalComp.get(number).get(13) );
         cuentasContables.setText("");
         centrodecosto.setText("");
     }
